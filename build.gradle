@@ -1,0 +1,46 @@
+plugins {
+    id "java"
+    id "org.springframework.boot" version "${_spring_boot_version}"
+    id "io.spring.dependency-management" version "${_spring_dependency_management_version}"
+}
+
+group = "pro.julleon"
+version = "1.0.0"
+
+java {
+    sourceCompatibility = "17"
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter-webflux"
+    implementation "org.springframework.boot:spring-boot-starter-security"
+    implementation "org.springframework.boot:spring-boot-starter-data-r2dbc"
+
+    implementation "org.springframework.session:spring-session-core:${_spring_session_core}"
+
+    implementation "io.r2dbc:r2dbc-postgresql:${_r2dbc_postgresql_version}"
+    implementation"org.postgresql:postgresql:${_postgresql_version}"
+
+    implementation "org.flywaydb:flyway-core:${_flyway_core_version}"
+    implementation "com.google.code.findbugs:jsr305:${_google_findbugs_jsr305_version}"
+
+    implementation "org.mapstruct:mapstruct:${_mapstruct_version}"
+
+    implementation "io.jsonwebtoken:jjwt:${_jsonwebtoken_jjwt_version}"
+    implementation "javax.xml.bind:jaxb-api:${_jaxb_api_version}"
+
+    annotationProcessor "org.mapstruct:mapstruct-processor:${_mapstruct_version}"
+    annotationProcessor "org.projectlombok:lombok"
+
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "io.projectreactor:reactor-test"
+}
+
+tasks.named("test") {
+    useJUnitPlatform()
+}
